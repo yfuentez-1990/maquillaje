@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Care HN | Importaciones USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --primary: #d4a373; /* Dorado suave */
+            --secondary: #faedcd; /* Nude */
+            --dark: #1a1a1a;
+            --text: #4a4a4a;
+            --white: #ffffff;
+            --accent: #e9edc6;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--text); line-height: 1.6; background-color: #fefae0; overflow-x: hidden; }
+        h1, h2, h3, .brand { font-family: 'Playfair Display', serif; }
+
+        /* --- NAVEGACIÓN --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--dark); text-decoration: none; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--primary); }
+
+        .cart-icon { position: relative; cursor: pointer; font-size: 1.2rem; }
+        #cart-count {
+            position: absolute; top: -10px; right: -10px;
+            background: var(--primary); color: white;
+            font-size: 0.7rem; padding: 2px 6px; border-radius: 50%;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&q=80&w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 60px;
+        }
+
+        .hero-content { max-width: 800px; padding: 2rem; background: rgba(0,0,0,0.3); border-radius: 15px; backdrop-filter: blur(5px); }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .btn-primary {
+            background: var(--primary); color: white; border: none;
+            padding: 1rem 2.5rem; font-size: 1rem; font-weight: 600;
+            text-decoration: none; border-radius: 50px; transition: var(--transition);
+            cursor: pointer; display: inline-block;
+        }
+        .btn-primary:hover { background: var(--dark); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        /* --- SECCIONES COMUNES --- */
+        section { padding: 5rem 10%; }
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: var(--dark); }
+
+        /* --- BENEFICIOS --- */
+        .benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center; }
+        .benefit-card { padding: 2rem; background: var(--white); border-radius: 15px; transition: var(--transition); }
+        .benefit-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .benefit-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+
+        /* --- TIENDA / CATALOGO --- */
+        .filters { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .search-bar { width: 100%; max-width: 400px; padding: 0.8rem; border-radius: 25px; border: 1px solid #ddd; margin-bottom: 1rem; }
+        
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+        
+        .product-card {
+            background: var(--white); border-radius: 20px; overflow: hidden;
+            transition: var(--transition); position: relative; border: 1px solid #f0f0f0;
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+        .product-img { width: 100%; height: 280px; object-fit: cover; transition: var(--transition); }
+        .product-card:hover .product-img { scale: 1.05; }
+        
+        .badge {
+            position: absolute; top: 15px; left: 15px;
+            background: var(--primary); color: white;
+            padding: 5px 12px; font-size: 0.7rem; border-radius: 20px; font-weight: 600;
+        }
+
+        .product-info { padding: 1.5rem; }
+        .brand-tag { font-size: 0.75rem; text-transform: uppercase; color: #999; letter-spacing: 1px; }
+        .product-name { font-size: 1.1rem; font-weight: 700; margin: 0.5rem 0; color: var(--dark); }
+        .product-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+        .btn-add {
+            width: 100%; padding: 0.8rem; border: 2px solid var(--primary);
+            background: transparent; color: var(--primary); font-weight: 700;
+            border-radius: 10px; cursor: pointer; transition: var(--transition);
+        }
+        .btn-add:hover { background: var(--primary); color: white; }
+
+        /* --- QUIÉNES SOMOS --- */
+        .about-container { display: flex; align-items: center; gap: 4rem; flex-wrap: wrap; }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-img { flex: 1; min-width: 300px; border-radius: 20px; box-shadow: var(--shadow); }
+
+        /* --- CARRITO MODAL --- */
+        .cart-overlay {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px;
+            height: 100vh; background: var(--white); z-index: 2000;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.1); transition: 0.4s ease;
+            padding: 2rem; display: flex; flex-direction: column;
+        }
+        .cart-overlay.active { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; margin-bottom: 2rem; align-items: center; }
+        .cart-items { flex-grow: 1; overflow-y: auto; }
+        .cart-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center; }
+        .cart-item img { width: 60px; height: 60px; border-radius: 10px; object-fit: cover; }
+        .cart-total { border-top: 1px solid #eee; padding-top: 1.5rem; margin-top: 1rem; }
+        
+        /* --- CONTACTO --- */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 1rem; margin-bottom: 1rem;
+            border: 1px solid #ddd; border-radius: 10px; font-family: inherit;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            section { padding: 3rem 5%; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* WhatsApp Floating */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 999;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">GLOW & CARE</a>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#tienda">Catálogo</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content animate__animated animate__fadeInUp">
+            <p style="text-transform: uppercase; letter-spacing: 3px;">Honduras • Calidad USA</p>
+            <h1>Revela tu Brillo Natural</h1>
+            <p>Maquillaje y Skincare original importado de las mejores marcas del mundo directamente a tu puerta.</p>
+            <a href="#tienda" class="btn-primary">Ver catálogo</a>
+        </div>
+    </section>
+
+    <section>
+        <div class="benefits">
+            <div class="benefit-card">
+                <i class="fa-solid fa-plane-shield"></i>
+                <h3>100% Original</h3>
+                <p>Importados directamente de USA. Sin imitaciones.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Envíos Rápidos</h3>
+                <p>Envíos a todo el país (Honduras) vía CAEX o encomiendas.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>Asesoría Personal</h3>
+                <p>Te ayudamos a elegir el tono y rutina ideal para tu piel.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tienda">
+        <h2 class="section-title">Nuestra Colección</h2>
+        
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Buscar marca o producto (ej. CeraVe)..." onkeyup="filterProducts()">
+        </div>
+
+        <div class="products-grid" id="products-container">
+            </div>
+    </section>
+
+    <section id="nosotros" style="background: #fff;">
+        <div class="about-container">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=800" alt="Nosotros" class="about-img">
+            <div class="about-text">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Cuidado Real para Mujeres Reales</h2>
+                <p>En **Glow & Care**, nacimos con el propósito de acercar las marcas más prestigiosas de Estados Unidos al público hondureño de forma segura y transparente.</p>
+                <br>
+                <p>Nuestro proceso de importación garantiza que cada producto (desde un labial de NARS hasta el tratamiento de Olaplex) llegue en perfectas condiciones y con fecha de expiración vigente.</p>
+                <div style="margin-top: 2rem; font-style: italic; color: var(--primary);">
+                    "Excelente servicio, mis productos de CeraVe llegaron intactos a SPS." - Lucia M.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2 class="section-title">Contáctanos</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Estamos para servirte</h3>
+                <p>¿Tienes dudas sobre un envío o producto?</p>
+                <div style="margin: 2rem 0;">
+                    <p><i class="fa-solid fa-location-dot"></i> Envíos desde San Pedro Sula a todo HN</p>
+                    <p><i class="fa-solid fa-phone"></i> +504 9984-1469</p>
+                    <p><i class="fa-brands fa-instagram"></i> @jenode_fuentes</p>
+                </div>
+                <a href="https://wa.me/50499841469" class="btn-primary" style="background: #25d366;"><i class="fa-brands fa-whatsapp"></i> Chat Directo</a>
+            </div>
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensaje enviado correctamente. Te contactaremos pronto.');">
+                <input type="text" placeholder="Nombre completo" required>
+                <input type="email" placeholder="Correo electrónico" required>
+                <textarea rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                <button type="submit" class="btn-primary" style="width: 100%;">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-header">
+            <h3>Tu Pedido</h3>
+            <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.5rem;" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            </div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;">
+                <span>Total Estimado:</span>
+                <span id="cart-total-amount">L 0.00</span>
+            </div>
+            <button class="btn-primary" style="width: 100%; background: #25d366;" onclick="checkoutWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Finalizar por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <a href="https://wa.me/50499841469" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // --- BASE DE DATOS DE PRODUCTOS ---
+        const products = [
+            { id: 1, name: "CeraVe Hydrating Cleanser", brand: "CeraVe", price: 550, cat: "Skincare", img: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&q=80&w=400", desc: "Limpiador hidratante para piel normal a seca." },
+            { id: 2, name: "Lash Paradise Mascara", brand: "L'Oreal", price: 380, cat: "Maquillaje", img: "https://images.unsplash.com/photo-1591360236630-4eb9b34639fd?auto=format&fit=crop&q=80&w=400", desc: "Volumen espectacular y longitud intensa." },
+            { id: 3, name: "Olaplex No. 3 Repair", brand: "Olaplex", price: 890, cat: "Cabello", img: "https://images.unsplash.com/photo-1631730359585-38a4935ccbb2?auto=format&fit=crop&q=80&w=400", desc: "Tratamiento perfeccionador de enlaces capilares." },
+            { id: 4, name: "NARS Radiant Concealer", brand: "NARS", price: 950, cat: "Maquillaje", img: "https://images.unsplash.com/photo-1625093765132-23af944b1711?auto=format&fit=crop&q=80&w=400", desc: "Corrector de alta cobertura y acabado natural." },
+            { id: 5, name: "Centella Ampoule", brand: "Skin1004", price: 620, cat: "Skincare", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&q=80&w=400", desc: "Calmante facial coreano para piel sensible." },
+            { id: 6, name: "Fit Me Matte Foundation", brand: "Maybelline", price: 420, cat: "Maquillaje", img: "https://images.unsplash.com/photo-1599733589046-10c005739ef0?auto=format&fit=crop&q=80&w=400", desc: "Base de maquillaje control de brillo y poros." },
+            { id: 7, name: "La Roche-Posay Anthelios", brand: "La Roche-Posay", price: 780, cat: "Skincare", img: "https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&q=80&w=400", desc: "Protector solar toque seco FPS 50+." },
+            { id: 8, name: "Beauty Creations Palette", brand: "Beauty Creations", price: 650, cat: "Maquillaje", img: "https://images.unsplash.com/photo-1583241475878-18e3575d51ae?auto=format&fit=crop&q=80&w=400", desc: "Sombras de alta pigmentación." }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('glow_cart')) || [];
+
+        // --- FUNCIONES CORE ---
+
+        function renderProducts(filter = '') {
+            const container = document.getElementById('products-container');
+            container.innerHTML = '';
+            
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase()) || 
+                p.brand.toLowerCase().includes(filter.toLowerCase())
+            );
+
+            filtered.forEach(p => {
+                container.innerHTML += `
+                    <div class="product-card animate__animated animate__fadeIn">
+                        <span class="badge">Disponible • USA</span>
+                        <img src="${p.img}" alt="${p.name}" class="product-img">
+                        <div class="product-info">
+                            <span class="brand-tag">${p.brand}</span>
+                            <h3 class="product-name">${p.name}</h3>
+                            <p style="font-size: 0.8rem; color: #777; margin-bottom: 10px;">${p.desc}</p>
+                            <p class="product-price">L ${p.price.toLocaleString()}</p>
+                            <button class="btn-add" onclick="addToCart(${p.id})">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterProducts() {
+            const val = document.getElementById('searchInput').value;
+            renderProducts(val);
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            updateCart();
+            // Feedback visual suave
+            const btn = event.target;
+            btn.innerText = "¡Agregado!";
+            setTimeout(() => btn.innerText = "Agregar al Carrito", 1000);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            localStorage.setItem('glow_cart', JSON.stringify(cart));
+            document.getElementById('cart-count').innerText = cart.length;
+            
+            const container = document.getElementById('cart-items-container');
+            const totalEl = document.getElementById('cart-total-amount');
+            container.innerHTML = '';
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="${item.name}">
+                        <div style="flex-grow:1">
+                            <h4 style="font-size: 0.9rem;">${item.name}</h4>
+                            <p style="color: var(--primary); font-weight: 700;">L ${item.price}</p>
+                        </div>
+                        <i class="fa-solid fa-trash" style="color: #ffb3b3; cursor:pointer" onclick="removeFromCart(${index})"></i>
+                    </div>
+                `;
+            });
+            totalEl.innerText = `L ${total.toLocaleString()}`;
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            let message = "Hola 😊 Me interesa cotizar y conocer disponibilidad de estos productos de belleza que vi en su web:\n\n";
+            let total = 0;
+
+            cart.forEach((item, i) => {
+                message += `${i+1}. *${item.name}* (${item.brand}) - L ${item.price}\n`;
+                total += item.price;
+            });
+
+            message += `\n*Total Referencial: L ${total.toLocaleString()}*\n`;
+            message += `\n¿Me confirmas disponibilidad y próximos pasos para la entrega? Me gustaría coordinar el pago y envío.`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const waUrl = `https://wa.me/50499841469?text=${encodedMsg}`;
+            
+            window.open(waUrl, '_blank');
+        }
+
+        // Inicialización
+        window.onload = () => {
+            renderProducts();
+            updateCart();
+        };
+    </script>
+</body>
+</html>
